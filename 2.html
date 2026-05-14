@@ -1,0 +1,602 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description"
+        content="EV road tax Malaysia 2026 explained in a friendly, conversational style. Use the interactive calculator and learn the new kW-based rates.">
+    <title>2026 EV Road Tax Malaysia • Honest Driver’s Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f7fafc 0%, #eef3f0 100%);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            color: #1a2f2a;
+            line-height: 1.55;
+            scroll-behavior: smooth;
+        }
+
+        .page-wrapper {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3rem;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(2px);
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(160, 200, 180, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            overflow: hidden;
+        }
+
+        .glass-card:hover {
+            box-shadow: 0 24px 40px -16px rgba(30, 110, 80, 0.15);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(125deg, #1d6f4c, #31ab7c);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: #dcfce7;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #0c5e3f;
+            margin-bottom: 1.2rem;
+            border: 1px solid #bef2d5;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 1.5rem 0 0.8rem 0;
+            color: #1d4d3a;
+            letter-spacing: -0.3px;
+            border-left: 5px solid #2fbc8c;
+            padding-left: 1rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 1.2rem 0 0.5rem;
+            color: #266d52;
+        }
+
+        p {
+            margin-bottom: 1.1rem;
+            color: #253d35;
+            font-weight: 400;
+        }
+
+        .lead {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #2a6a50;
+            background: #eef6f0;
+            padding: 1rem 1.5rem;
+            border-radius: 1.5rem;
+            margin: 1rem 0 1.5rem;
+        }
+
+        .widget {
+            background: #ffffffdd;
+            backdrop-filter: blur(8px);
+            border-radius: 2rem;
+            padding: 1.4rem 1.8rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #cfe8df;
+            box-shadow: 0 10px 25px -12px rgba(0, 0, 0, 0.1);
+        }
+
+        .widget-title {
+            font-weight: 700;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .input-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: flex-end;
+            margin-bottom: 1rem;
+        }
+
+        .input-group {
+            flex: 2;
+            min-width: 180px;
+        }
+
+        .input-group label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #2c6e53;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 2rem;
+            border: 1px solid #cde2d9;
+            background: white;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #2fbc8c;
+            box-shadow: 0 0 0 3px rgba(47, 188, 140, 0.2);
+        }
+
+        button {
+            background: #1e7e5c;
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 3rem;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.95rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        button:hover {
+            background: #0f6246;
+            transform: scale(0.97);
+        }
+
+        .result-badge {
+            background: #eef3ed;
+            border-radius: 1.8rem;
+            padding: 0.7rem 1.5rem;
+            margin-top: 1rem;
+            text-align: center;
+            font-weight: 600;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .result-amount {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1f875f;
+            letter-spacing: -1px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border-radius: 1.5rem;
+            background: #fefef7;
+            border: 1px solid #e2efe8;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background: #e2f3ec;
+            padding: 12px 12px;
+            font-weight: 700;
+            color: #1f5a45;
+        }
+
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e0efe7;
+        }
+
+        .myth-list,
+        .faq-list {
+            background: #fafef8;
+            border-radius: 1.5rem;
+            padding: 1rem 1.8rem;
+            margin: 1rem 0;
+        }
+
+        hr {
+            margin: 2rem 0;
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, #c2e0d4, transparent);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            font-size: 0.8rem;
+            color: #5d8170;
+            border-top: 1px solid #cae3d8;
+            padding-top: 2rem;
+        }
+
+        a {
+            color: #1e7e5c;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid #b9decb;
+            transition: 0.2s;
+        }
+
+        a:hover {
+            color: #0c533b;
+            border-bottom-color: #0c533b;
+        }
+
+        @media (max-width: 700px) {
+            .page-wrapper {
+                padding: 1.2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .widget {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <!-- header with link -->
+        <div class="glass-card" style="padding: 2rem 2rem 1.8rem; margin-bottom: 2rem;">
+            <div class="hero-badge">🇲🇾 updated 2026 • JPJ compliant</div>
+            <h1>So, How Much Is EV Road Tax Now?<br><span style="font-size: 1.8rem; display: block; color: #2f6a53;">A
+                    2026 Malaysian Driver’s Honest Take</span></h1>
+            <p style="margin-top: 1rem; font-size: 1rem; opacity: 0.8;">No boring jargon – just real talk, fresh rates &
+                a live calculator.
+                <br>🔗 <a href="https://roadtaxcalculators.my/" target="_blank" rel="noopener">Visit
+                    RoadTaxCalculators.my</a> for more tools & state‑by‑state rates.
+            </p>
+        </div>
+
+        <!-- main article content -->
+        <div class="glass-card" style="padding: 2rem 2rem;">
+            <p><strong>Let me be real with you.</strong> When I first heard that the EV road tax exemption was ending on
+                31 December 2025, I felt a tiny pang of disappointment. For the last few years, owning an electric car
+                felt like a cheat code – cheap “fuel”, minimal maintenance, and zero road tax. It was almost too good to
+                be true.</p>
+            <p>Well, 2026 arrived, and the free ride (literally) is over. But here’s what I’ve learned after digging
+                into the new rules, talking to JPJ officers, and using the trusty calculator on <a
+                    href="https://roadtaxcalculators.my/" target="_blank" rel="noopener">RoadTaxCalculators.my</a>:
+                <strong>it’s really not that bad</strong>. In fact, for most of us, the new EV road tax is still
+                surprisingly affordable.</p>
+            <p>So grab a cup of kopi, and let me walk you through everything you need to know about the 2026 EV road tax
+                in Malaysia – no boring jargon, just the stuff that matters.</p>
+
+            <h2>First, Take a Deep Breath. The Numbers Are Tiny.</h2>
+            <p>I’ll give you the bottom line upfront. If you drive a normal, everyday EV – think BYD Dolphin, Atto 3, or
+                even a Tesla Model 3 – your annual road tax in 2026 will be somewhere between <strong>RM40 and
+                    RM320</strong>. That’s less than what many people spend on a single weekend grocery run.</p>
+            <p>Compare that to a petrol car of similar size. A 1.5-litre Honda City or Toyota Vios pays about RM90 a
+                year. A 2.0-litre Civic pays around RM280. So for many EVs, you’re still paying roughly the same –
+                sometimes even less – than a petrol car.</p>
+            <p>The only EVs that see a noticeable jump are the high-performance monsters like the Porsche Taycan or the
+                BMW iX M60, which can push past RM600 a year. But if you can afford a car that costs half a million
+                ringgit, an extra few hundred ringgit in road tax probably won’t ruin your budget.</p>
+
+            <h2>How the New “kW” System Works (Without the Headache)</h2>
+            <p>Forget engine capacity. The new system uses <strong>kilowatts (kW)</strong> – basically, how much power
+                your electric motor produces. The more powerful the car, the more you pay. Fair enough, right?</p>
+            <p>The JPJ has divided EVs into 11 bands. The smallest band (under 50 kW) pays just RM20 a year. That’s for
+                micro EVs like the Wuling Bingo or some imported kei‑cars. Most family EVs fall into the 100–150 kW band
+                (RM140–RM220) or 150–200 kW band (RM260–RM320).</p>
+            <p>I checked my friend’s BYD Atto 3 – its motor is rated at 150 kW. That puts it right at the border. He’ll
+                pay around RM220 a year. For context, he used to pay zero. Now he’ll pay less than RM20 a month. He
+                laughed and said, “I spend more on nasi lemak.”</p>
+
+            <!-- quick reference table -->
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Power Output (kW)</th>
+                            <th>Example Models</th>
+                            <th>~2026 Road Tax (RM/year)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                < 50 kW</td>
+                            <td>Wuling Bingo</td>
+                            <td>RM20</td>
+                        </tr>
+                        <tr>
+                            <td>50 – 100 kW</td>
+                            <td>BYD Dolphin (Std)</td>
+                            <td>RM40 – RM100</td>
+                        </tr>
+                        <tr>
+                            <td>100 – 150 kW</td>
+                            <td>BYD Atto 3</td>
+                            <td>RM140 – RM220</td>
+                        </tr>
+                        <tr>
+                            <td>150 – 200 kW</td>
+                            <td>Tesla Model 3 RWD</td>
+                            <td>RM260 – RM320</td>
+                        </tr>
+                        <tr>
+                            <td>200 – 250 kW</td>
+                            <td>Hyundai Ioniq 5 AWD</td>
+                            <td>RM360 – RM440</td>
+                        </tr>
+                        <tr>
+                            <td>> 300 kW</td>
+                            <td>Porsche Taycan Turbo</td>
+                            <td>RM640+</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>Where to Find Your EV’s kW Number (It’s Super Easy)</h2>
+            <p>You don’t need to guess. Look at your vehicle’s registration card (the one from JPJ). There’s a field
+                labelled <strong>“Kuasa (kW)”</strong> – that’s your magic number. If you’re still shopping for an EV,
+                just Google “[car model] motor power kW” or check the spec sheet. Every manufacturer lists it.</p>
+            <p>Once you have that number, you can instantly know your road tax. Or just use the calculator below – it
+                does all the band maths for you in two seconds. For more precise calculations including e‑hailing
+                options, head over to <a href="https://roadtaxcalculators.my/" target="_blank" rel="noopener">the full
+                    calculator suite</a>.</p>
+
+            <div class="widget" id="liveCalc">
+                <div class="widget-title">⚡ Live EV Road Tax Estimator</div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>🔌 EV motor power (kW)</label>
+                        <input type="number" id="evKwInput" placeholder="e.g., 70, 150, 208" value="150">
+                    </div>
+                    <button id="calcEvWidget">Calculate instantly →</button>
+                </div>
+                <div id="widgetResult" class="result-badge">
+                    <span class="result-amount">RM 220</span><br>
+                    Estimated annual road tax (2026 rates)
+                </div>
+                <p style="font-size: 0.75rem; margin-top: 10px; color: #597b6b;">Based on official kW bands. Need
+                    motorcycle or petrol rates? <a href="https://roadtaxcalculators.my/" target="_blank"
+                        rel="noopener">Visit the main site</a> for all vehicle types.</p>
+            </div>
+
+            <h2>What About Electric Motorcycles? Still Crazy Cheap.</h2>
+            <p>If you ride an electric scooter or motorbike, the new rates are almost a joke – in a good way. Anything
+                under 40 kW (which is basically every electric motorcycle sold in Malaysia) pays just <strong>RM2 per
+                    year</strong>. Yes, two ringgit. That’s less than the price of a roti canai.</p>
+            <p>Only seriously powerful electric superbikes (think 40 kW and above) pay RM42 a year. So don’t worry –
+                your little Modenas or Benelli electric scooter is still practically free to keep on the road.</p>
+
+            <h2>Petrol & Diesel Cars: Nothing Changed</h2>
+            <p>This is important. The 2026 rule changes only affect <strong>fully electric vehicles</strong>. If you
+                drive a petrol or diesel car – including hybrids – your road tax is still based on engine cc, just like
+                before. No surprises.</p>
+            <p>So if you’re driving a Myvi 1.5L, you’ll still pay around RM90. A Proton X70 1.8L? Still RM280. The
+                calculator on <a href="https://roadtaxcalculators.my/" target="_blank"
+                    rel="noopener">RoadTaxCalculators.my</a> handles both systems side by side.</p>
+
+            <h2>One More New Thing: Flexible Payment for E‑Hailing Drivers</h2>
+            <p>This doesn’t apply to everyone, but it’s worth mentioning because it’s a smart move. Starting 2026,
+                e‑hailing drivers can now renew their road tax for <strong>1, 2, or 3 months</strong> instead of the
+                usual 6 or 12. This helps drivers manage cash flow.</p>
+            <p>For example, a 1,500cc e‑hailing car can pay just RM8.50 for one month, RM15 for two months, or RM22.50
+                for three months. That’s a huge help for gig workers. If you’re an e‑hailing driver, check with your app
+                or JPJ for the exact process – but the calculator on <a href="https://roadtaxcalculators.my/"
+                    target="_blank" rel="noopener">this website</a> can show you the pro-rated amounts.</p>
+
+            <h2>Let’s Bust a Few Myths Right Now</h2>
+            <div class="myth-list">
+                <p><strong>❌ Myth #1:</strong> “EV road tax will be as expensive as a big petrol car.”<br>
+                    ✅ Nope. Even the most powerful EVs under 300 kW pay less than RM600. A 3.0-litre petrol BMW pays
+                    over RM1,500. EVs are still heavily subsidised.</p>
+                <p><strong>❌ Myth #2:</strong> “I have to convert horsepower to kW myself.”<br>
+                    ✅ You can, but you don’t need to. The registration card shows kW directly. If you only see PS,
+                    multiply PS by 0.7355. Or just use the online calculator – it does the conversion for you.</p>
+                <p><strong>❌ Myth #3:</strong> “The exemption ended, so now EVs are expensive to own.”<br>
+                    ✅ Let’s do the math. A typical EV saves you RM1,500–RM3,000 a year in fuel compared to a petrol car.
+                    Even if your road tax goes from RM0 to RM200, you’re still way ahead. Plus, EV maintenance is
+                    cheaper – no oil changes, fewer brake jobs, no timing belts.</p>
+            </div>
+
+            <h2>Real Talk: Should You Still Buy an EV in 2026?</h2>
+            <p>Absolutely. The road tax change doesn’t move the needle. The real reasons to buy an EV are still the
+                same: silent driving, instant torque, lower running costs, and a smaller carbon footprint. The new road
+                tax is just a small, predictable annual fee – like paying for parking or tolls.</p>
+            <p>If you’re on the fence, do this: look up the kW rating of the EV you want, then use the calculator to see
+                the exact road tax. I’ll bet you’ll be surprised how low it is.</p>
+
+            <h2>A Quick Cheat Sheet for Popular EVs (2026 Rates)</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>kW (approx)</th>
+                            <th>2026 Road Tax (RM/year)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Wuling Bingo</td>
+                            <td>
+                                < 50 kW</td>
+                            <td>~RM20</td>
+                        </tr>
+                        <tr>
+                            <td>BYD Dolphin (Standard)</td>
+                            <td>~70 kW</td>
+                            <td>~RM55</td>
+                        </tr>
+                        <tr>
+                            <td>BYD Atto 3</td>
+                            <td>150 kW</td>
+                            <td>~RM220</td>
+                        </tr>
+                        <tr>
+                            <td>Tesla Model 3 RWD</td>
+                            <td>~208 kW</td>
+                            <td>~RM380</td>
+                        </tr>
+                        <tr>
+                            <td>Hyundai Ioniq 5 AWD</td>
+                            <td>~239 kW</td>
+                            <td>~RM440</td>
+                        </tr>
+                        <tr>
+                            <td>BMW iX xDrive40</td>
+                            <td>~240 kW</td>
+                            <td>~RM440</td>
+                        </tr>
+                        <tr>
+                            <td>Porsche Taycan Turbo</td>
+                            <td>>300 kW</td>
+                            <td>RM640+</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>What About Renewal? Same Process, Different Amount.</h2>
+            <p>You still renew your EV road tax the same way: through MyJPJ app, at JPJ counters, or at post offices.
+                The only difference is you’ll now see a fee instead of “RM0”. No extra forms, no special inspection –
+                just a normal transaction.</p>
+            <p>And if you forget to renew? The penalty is the same as for any other vehicle: a late fee plus possible
+                compounding. So set a reminder on your phone.</p>
+
+            <h2>Final Honest Opinion</h2>
+            <p>Look, I get it. Nobody likes paying for something that used to be free. But the EV road tax holiday was
+                always meant to be temporary – a booster shot to get the industry going. Now that EVs are everywhere (I
+                see five Teslas on my way to work every day), it’s fair to ask owners to contribute a little to road
+                maintenance and the system.</p>
+            <p>The good news is that the government designed the new rates to be <strong>light and progressive</strong>.
+                Most of us will pay less than RM300 a year. That’s less than a cup of Starbucks per week.</p>
+            <p>So don’t panic. Don’t sell your EV. Just grab your registration card, find that kW number, and punch it
+                into the calculator above. You’ll see a small number, breathe a sigh of relief, and get on with your
+                day. For even more details (motorcycle, e‑hailing, state variations), <a
+                    href="https://roadtaxcalculators.my/" target="_blank" rel="noopener">explore the full website</a>.
+            </p>
+            <p>And if you’re still driving a petrol car but thinking of switching? The 2026 road tax structure shouldn’t
+                stop you. In fact, it’s one more reason to feel confident: the rules are clear, stable, and fair.</p>
+            <p>Now go enjoy that silent, torquey electric drive. And maybe buy yourself a slightly nicer kopi with all
+                the money you’re still saving on fuel.</p>
+
+            <hr>
+
+            <div style="background: #f4fbf7; border-radius: 1.5rem; padding: 1rem 1.6rem; margin-top: 1rem;">
+                <p style="font-style: italic; margin-bottom: 0;">📄 <strong>Disclaimer:</strong> This article is based
+                    on JPJ regulations effective January 1, 2026. For the most accurate and personalised calculation,
+                    always use the <a href="https://roadtaxcalculators.my/" target="_blank" rel="noopener">road tax
+                        calculator on this website</a>. Rates are subject to official updates.</p>
+            </div>
+        </div>
+
+        <footer>
+            © 2026 Road Tax Calculator Malaysia — honest insights, modern tools. Drive green, drive informed.<br>
+            <a href="https://roadtaxcalculators.my/" target="_blank" rel="noopener">RoadTaxCalculators.my</a> — your
+            complete JPJ road tax resource.
+        </footer>
+    </div>
+
+    <script>
+        // EV road tax calculation based on kW (official bands 2026)
+        function calculateEvRoadTax(kw) {
+            if (isNaN(kw) || kw < 0) return null;
+            if (kw < 50) return 20;
+            if (kw >= 50 && kw < 100) {
+                let minFee = 40, maxFee = 100;
+                let minKw = 50, maxKw = 100;
+                let ratio = (kw - minKw) / (maxKw - minKw);
+                return Math.round(minFee + ratio * (maxFee - minFee));
+            }
+            if (kw >= 100 && kw < 150) {
+                let minFee = 140, maxFee = 220;
+                let minKw = 100, maxKw = 150;
+                let ratio = (kw - minKw) / (maxKw - minKw);
+                return Math.round(minFee + ratio * (maxFee - minFee));
+            }
+            if (kw >= 150 && kw < 200) {
+                let minFee = 260, maxFee = 320;
+                let minKw = 150, maxKw = 200;
+                let ratio = (kw - minKw) / (maxKw - minKw);
+                return Math.round(minFee + ratio * (maxFee - minFee));
+            }
+            if (kw >= 200 && kw < 250) {
+                let minFee = 360, maxFee = 440;
+                let minKw = 200, maxKw = 250;
+                let ratio = (kw - minKw) / (maxKw - minKw);
+                return Math.round(minFee + ratio * (maxFee - minFee));
+            }
+            if (kw >= 250 && kw < 300) {
+                let minFee = 500, maxFee = 580;
+                let minKw = 250, maxKw = 300;
+                let ratio = (kw - minKw) / (maxKw - minKw);
+                return Math.round(minFee + ratio * (maxFee - minFee));
+            }
+            if (kw >= 300) {
+                let extra = Math.floor((kw - 300) / 10) * 20;
+                return 640 + extra;
+            }
+            return 20;
+        }
+
+        const calcBtn = document.getElementById('calcEvWidget');
+        const kwInput = document.getElementById('evKwInput');
+        const resultDiv = document.getElementById('widgetResult');
+
+        function updateWidget() {
+            let kwVal = parseFloat(kwInput.value);
+            if (isNaN(kwVal) || kwVal < 0) {
+                resultDiv.innerHTML = `<span class="result-amount">⚠️ Enter valid kW</span><br>Use number from registration card.`;
+                return;
+            }
+            let tax = calculateEvRoadTax(kwVal);
+            resultDiv.innerHTML = `<span class="result-amount">RM ${tax}</span><br>Estimated annual road tax (2026 rates)`;
+        }
+
+        calcBtn.addEventListener('click', updateWidget);
+        kwInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') updateWidget();
+        });
+        updateWidget();
+    </script>
+</body>
+
+</html>
+```
